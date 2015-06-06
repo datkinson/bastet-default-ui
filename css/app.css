@@ -1,0 +1,26 @@
+html, body, .container.loading {
+    height: 100%;
+}
+
+.width--full {
+    width: 100%;
+}
+
+.container.loading {
+    display: table;
+    vertical-align: middle;
+}
+.vertical-center-row {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.center { text-align: center; }
+
+.container.loading i {
+    font-size: 5em;
+    text-align: center;
+    color: rgb(27,35,53);
+}
+
+.container.login,.container.location { display: none; }
