@@ -22,4 +22,4 @@ html, body, .container.loading {
     text-align: center;
 }
 
-.container.login,.container.location,.container.setup { display: none; }
+.container.login,.container.location,.container.setup,.setup-2,.setup-3,.users-error,.admin-error,.device-error { display: none; }

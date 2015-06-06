@@ -37,14 +37,72 @@ $(function() {
     
     $('.form-setup-1').submit(function(event) {
         event.preventDefault();
-        if(user.hasOwnProperty('resource')){
+        if(user.hasOwnProperty('id')){
             $.ajax({
                 method: "PATCH",
-                url: hostUri+user.resource.replace(/^.*\/\/[^\/]+/, ''),
+                dataType: "json",
+                data: JSON.stringify({"Password": $('#inputAdminPassword').val()}),
+                url: hostUri+user.id+'?SessionKey='+$.cookie('Bastet_Session_Key')
             }).error(function(error) {
                 console.log(error);
+                // show some error thingy
+                $('.admin-error').fadeIn("slow");
             }).done(function( response ) {
                 console.log(response);
+                //go to stage 2
+                $('.setup-1').hide();
+                $('.setup-2').fadeIn("slow");
+            });
+        }
+    });
+    
+    $('.form-setup-2').submit(function(event) {
+        event.preventDefault();
+        if(api.hasOwnProperty('Users')){
+            var formData = new FormData();
+            formData.append("UserName", $('#inputCreateUserName').val());
+            formData.append("Password", $('#inputCreatUserPassword').val());
+            $.ajax({
+                method: "POST",
+                dataType: "json",
+                data: formData,
+                processData: false,
+                contentType: false,
+                url: hostUri+api.Users.replace(/^.*\/\/[^\/]+/, '')+'?SessionKey='+$.cookie('Bastet_Session_Key')
+            }).error(function(error) {
+                console.log(error);
+                // show some error thingy
+                $('.users-error').fadeIn("slow");
+            }).done(function( response ) {
+                console.log(response);
+                //go to stage 2
+                $('.setup-2').hide();
+                $('.setup-3').fadeIn("slow");
+            });
+        }
+    });
+    
+    
+    $('.form-setup-3').submit(function(event) {
+        event.preventDefault();
+        if(api.hasOwnProperty('Devices')){
+            var formData = new FormData();
+            formData.append("Url", $('#inputAddDeviceUrl').val());
+            formData.append("Backend", $('#inputAddDeviceBackend').val());
+            $.ajax({
+                method: "POST",
+                dataType: "json",
+                data: formData,
+                processData: false,
+                contentType: false,
+                url: hostUri+api.Devices.replace(/^.*\/\/[^\/]+/, '')+'?SessionKey='+$.cookie('Bastet_Session_Key')
+            }).error(function(error) {
+                console.log(error);
+                // show some error thingy
+                $('.device-error').fadeIn("slow");
+            }).done(function( response ) {
+                console.log(response);
+                window.location = window.location.href+'admin';
             });
         }
     });
@@ -112,13 +170,22 @@ function checkInitialInstall() {
         }).success(function(response) {
             console.log(response);
             for (var property in response) {
-                if (object.hasOwnProperty(property)) {
+                if (response.hasOwnProperty(property)) {
                     console.log('has property: '+property);
                 }
             }
             if(response.hasOwnProperty('SessionKey')) {
                 $.cookie("Bastet_Session_Key", response.SessionKey);
             }
+            if(response.hasOwnProperty('User')) {
+                if(response.User.hasOwnProperty('username')) {
+                    user.username = response.User.username;
+                }
+                if(response.User.hasOwnProperty('id')) {
+                    user.id = response.User.id;
+                }
+            }
+            
             console.log('default auth working, proceeding to setup...');
             $('.container.loading').hide();
             $('.container.setup').fadeIn("slow");

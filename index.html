@@ -77,6 +77,11 @@
                     <input type="password" id="inputAdminPasswordConfirm" class="form-control" placeholder="Confirm Password" required>
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
                 </form>
+                <div class="alert alert-danger admin-error" role="alert">
+                  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                  <span class="sr-only">Error:</span>
+                  Setting Administrator password failed
+                </div>
             </div>
         </div>
         <div class="row setup-2">
@@ -91,6 +96,11 @@
                     <input type="password" id="inputConfirmUserPassword" class="form-control" placeholder="Confirm Password" required>
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
                 </form>
+                <div class="alert alert-danger users-error" role="alert">
+                  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                  <span class="sr-only">Error:</span>
+                  Adding a new user has failed
+                </div>
             </div>
         </div>
         <div class="row setup-3">
@@ -105,6 +115,11 @@
                     <input type="text" id="inputAddDeviceBackend" class="form-control" placeholder="Device Backend" required>
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
                 </form>
+                <div class="alert alert-danger device-error" role="alert">
+                  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                  <span class="sr-only">Error:</span>
+                  Adding a device has failed
+                </div>
             </div>
         </div>
     </div> <!-- /container -->
