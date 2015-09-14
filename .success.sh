@@ -1,5 +1,5 @@
-#!/bin/bash
-echo "user: $user"
+#!/usr/bin/expect -f
+
 # connect via scp
 spawn scp index.html "$user@$host:."
 #######################
