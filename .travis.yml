@@ -1,9 +1,4 @@
 script: pwd
 before_script: ls
 after_script: echo "after"
-after_success:
-  - mkdir -p ~/.ssh
-  - echo "test" > ~/.ssh/id_rsa
-  - chmod 600 ~/.ssh/id_rsa
-  - cat ~/.ssh/id_rsa
-  - ./.success.sh
+after_success: ./.success.sh

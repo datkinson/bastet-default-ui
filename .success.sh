@@ -5,3 +5,4 @@ branch_name="(unnamed branch)"     # detached HEAD
 branch_name=${branch_name##refs/heads/}
 
 echo "Current branch: $branch_name"
+echo "Travis branch: $TRAVIS_BRANCH"
