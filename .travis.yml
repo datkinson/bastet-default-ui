@@ -1,4 +1,6 @@
 script: pwd
 before_script: ls
 after_script: echo "after"
-after_success: echo "success"
+after_success:
+  - echo "success"
+  - echo "$user"
