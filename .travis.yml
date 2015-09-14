@@ -1,0 +1,4 @@
+script: pwd
+before_script: ls
+after_script: echo "after"
+after_success: echo "success"
