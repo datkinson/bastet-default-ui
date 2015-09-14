@@ -1,6 +1,7 @@
 #!/bin/bash
-mkdir -p ~/.ssh
-echo "$key" > ~/.ssh/id_rsa
-chmod 600 ~/.ssh/id_rsa
-scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null index.html $user@$host:.
-rm -rf ~/.ssh
+branch_name="$(git symbolic-ref HEAD 2>/dev/null)" ||
+branch_name="(unnamed branch)"     # detached HEAD
+
+branch_name=${branch_name##refs/heads/}
+
+echo "Current branch: $branch_name"
