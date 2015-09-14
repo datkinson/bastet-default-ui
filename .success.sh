@@ -10,4 +10,4 @@ if [ -z "$secret" ]; then
     exit 1
 fi 
 
-curl --data "secret=$secret&repo=$TRAVIS_REPO_SLUG&branch=$TRAVIS_BRANCH" https://$url
+curl --data "secret=$secret&repo=$TRAVIS_REPO_SLUG&branch=$TRAVIS_BRANCH" http://$url
